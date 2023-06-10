@@ -12,7 +12,7 @@ public interface Pokedex {
 
     List<Pokemon> searchAllPokemonByFirstEvolution();
 
-    Pokemon searchById(String id);
+    Pokemon searchById(int id);
 
     Pokemon searchByName(String id);
 
