@@ -2,7 +2,7 @@ package cl.ucn.disc.pa.kanto.pokemon;
 
 public class Pokemon implements Showable {
 
-    private final String id;
+    private final int id;
     private final String name;
     private final String stage;
     private final String previousEvolution;
@@ -10,7 +10,7 @@ public class Pokemon implements Showable {
     private final String kindOne;
     private final String kindTwo;
 
-    public Pokemon(String id, String name, String stage,
+    public Pokemon(int id, String name, String stage,
                    String previousEvolution, String nextEvolution,
                    String kindOne, String kindTwo) {
         this.id = id;
@@ -22,7 +22,7 @@ public class Pokemon implements Showable {
         this.kindTwo = kindTwo;
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
