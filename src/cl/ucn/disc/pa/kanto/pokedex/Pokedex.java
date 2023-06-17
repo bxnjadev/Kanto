@@ -12,6 +12,8 @@ public interface Pokedex {
 
     List<Pokemon> searchAllPokemonByFirstEvolution();
 
+    List<Pokemon> searchPokemonByType(String type);
+
     Pokemon searchById(int id);
 
     Pokemon searchByName(String id);

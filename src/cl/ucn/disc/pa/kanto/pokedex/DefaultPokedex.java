@@ -1,10 +1,12 @@
 package cl.ucn.disc.pa.kanto.pokedex;
 
+import cl.ucn.disc.pa.kanto.in.reader.CvsPokemonReader;
+import cl.ucn.disc.pa.kanto.in.reader.PokemonReader;
 import cl.ucn.disc.pa.kanto.pokedex.sort.PokemonAlphabeticalComparator;
 import cl.ucn.disc.pa.kanto.pokedex.sort.PokemonAscendingComparator;
-import cl.ucn.disc.pa.kanto.pokedex.sort.PokemonDescendingComparator;
 import cl.ucn.disc.pa.kanto.pokemon.Pokemon;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -12,11 +14,17 @@ import java.util.List;
 
 public class DefaultPokedex implements Pokedex {
 
+    private static final String FILE_NAME = "kanto.txt";
     private static final String FIRST_EVOLUTION_PROPERTY = "Primera Evolución";
     private final List<Pokemon> comoundPokemon;
 
-    public DefaultPokedex() {
+    public DefaultPokedex() throws IOException {
         comoundPokemon = new ArrayList<>();
+
+        PokemonReader pokemonReader = new CvsPokemonReader(FILE_NAME);
+
+        PokedexLoader pokedexLoader = new DefaultPokedexLoader(pokemonReader, comoundPokemon);
+        pokedexLoader.load();
     }
 
     @Override
@@ -70,6 +78,20 @@ public class DefaultPokedex implements Pokedex {
         }
 
         return compound;
+    }
+
+    @Override
+    public List<Pokemon> searchPokemonByType(String type) {
+
+        List<Pokemon> pokemons = new ArrayList<>();
+
+        for (Pokemon pokemon : comoundPokemon) {
+            if(pokemon.getKindOne().equals(type) ||
+            pokemon.getKindTwo().equals(type))
+                pokemons.add(pokemon);
+        }
+
+        return pokemons;
     }
 
     @Override

@@ -52,6 +52,7 @@ public class Pokemon implements Showable {
 
     @Override
     public void show() {
+        System.out.println("Name: " + name);
     }
 
 }

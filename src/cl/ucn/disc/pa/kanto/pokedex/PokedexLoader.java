@@ -4,6 +4,4 @@ public interface PokedexLoader {
 
     void load();
 
-    void save();
-
 }
