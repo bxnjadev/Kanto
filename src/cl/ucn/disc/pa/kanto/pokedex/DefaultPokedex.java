@@ -22,8 +22,8 @@ public class DefaultPokedex implements Pokedex {
         comoundPokemon = new ArrayList<>();
 
         PokemonReader pokemonReader = new CvsPokemonReader(FILE_NAME);
-
         PokedexLoader pokedexLoader = new DefaultPokedexLoader(pokemonReader, comoundPokemon);
+
         pokedexLoader.load();
     }
 
