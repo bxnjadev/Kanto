@@ -15,7 +15,7 @@ import java.util.List;
 public class DefaultPokedex implements Pokedex {
 
     private static final String FILE_NAME = "kanto.txt";
-    private static final String FIRST_EVOLUTION_PROPERTY = "Primera Evolución";
+    private static final String FIRST_EVOLUTION_PROPERTY = "Primera Evolucion";
     private final List<Pokemon> compoundPokemon;
 
     public DefaultPokedex() throws IOException {
@@ -35,10 +35,6 @@ public class DefaultPokedex implements Pokedex {
         for (Pokemon pokemon : compoundPokemon) {
             int idPokemon = pokemon.getId();
 
-            if (idPokemon > secondLimit) {
-                break;
-            }
-
             if (idPokemon > firstLimit && idPokemon < secondLimit) {
                 pokemonInRange.add(
                         pokemon
@@ -56,16 +52,7 @@ public class DefaultPokedex implements Pokedex {
     @Override
     public List<Pokemon> searchAllPokemon() {
 
-        System.out.println(compoundPokemon.size());
-
         List<Pokemon> pokemonCompoundCopied = new ArrayList<>(compoundPokemon);
-
-        System.out.println(pokemonCompoundCopied.size());
-
-        for (Pokemon pokemon : compoundPokemon) {
-            System.out.println(pokemon.getName());
-        }
-
         pokemonCompoundCopied.sort(
                 new PokemonAlphabeticalComparator()
         );

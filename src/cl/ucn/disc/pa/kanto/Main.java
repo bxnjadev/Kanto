@@ -6,6 +6,7 @@ import cl.ucn.disc.pa.kanto.pokemon.Pokemon;
 import ucn.StdIn;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Main {
 
@@ -15,37 +16,45 @@ public class Main {
         showMainMenu(pokedex);
 
 
-
-
     }
 
+    /**
+     * This function show the main menu
+     * @param pokedex the system Pokedex
+     */
+
     public static void showMainMenu(Pokedex pokedex) {
-        System.out.println("Opciones: ");
-        System.out.println("a) Desplegar pokemones dado un rango de número creciente");
-        System.out.println("b) Desplegar todos los pokemones almacenados alfabeticamente");
-        System.out.println("c) Desplegar los pokemone sdado un tipo particular");
-        System.out.println("d) Desplegar los pokemones de la primera evolución");
-        System.out.println("e) Buscar por nombre");
-        System.out.println("f) Buscar por id");
-        System.out.println("g) Salir");
+
 
         while (true) {
+            System.out.println("Opciones: ");
+            System.out.println("a) Desplegar pokemones dado un rango de número creciente");
+            System.out.println("b) Desplegar todos los pokemones almacenados alfabeticamente");
+            System.out.println("c) Desplegar los pokemone sdado un tipo particular");
+            System.out.println("d) Desplegar los pokemones de la primera evolución");
+            System.out.println("e) Buscar por nombre");
+            System.out.println("f) Buscar por id");
+            System.out.println("g) Salir");
             String option = StdIn.readString();
 
             switch (option) {
                 case "a":
                     showPokemonInRange(pokedex);
+                    break;
                 case "b":
                     showPokemonAlphabetical(pokedex);
+                    break;
                 case "c":
                     showPokemonByType(pokedex);
+                    break;
                 case "d":
                     showPokemonByFirstEvolution(pokedex);
+                    break;
                 case "e":
                     searchByName(pokedex);
+                    break;
                 case "f":
-
-
+                    searchById(pokedex);
                 default:
                     break;
             }
@@ -85,7 +94,7 @@ public class Main {
 
     public static void showPokemonByType(Pokedex pokedex) {
 
-        System.out.println("Ingresa el pokemon que quieres elegir: ");
+        System.out.println("Ingresa el tipo de pokemon que quieres elegir: ");
         String type = StdIn.readString();
 
         pokedex.searchPokemonByType(type).forEach(
@@ -116,6 +125,18 @@ public class Main {
 
         pokemon.show();
 
+        if (pokemon.getNextEvolution().isEmpty()) {
+            System.out.println("Este pokemon no tiene siguientes evoluciones.");
+        } else {
+            navigateNextEvolution(pokemon.getNextEvolution());
+        }
+
+        if (pokemon.getPreviousEvolution().isEmpty()) {
+            System.out.println("Este pokemon no tiene evoluciones anteriores.");
+        } else {
+            navigatePreviousEvolution(pokemon.getPreviousEvolution());
+        }
+
     }
 
     public static void searchById(Pokedex pokedex) {
@@ -132,6 +153,76 @@ public class Main {
 
         pokemon.show();
 
+    }
+
+    private static void navigateNextEvolution(List<String> nextEvolution) {
+        if (nextEvolution.size() == 1) {
+            System.out.println("Hay solo una evolución siguiente y es: ");
+            System.out.println(nextEvolution.get(0));
+        } else {
+
+            int index = 0;
+            while (index != -1) {
+
+                if (index > (nextEvolution.size() - 1)) {
+                    System.out.println("Ya no hay mas que ver");
+                    index = index - 1;
+                    continue;
+                }
+
+                System.out.println("Estas viendo la evolucion: ");
+                System.out.println(nextEvolution.get(index));
+
+                System.out.println("Navegacion: ");
+                System.out.println("a) Siguiente");
+                System.out.println("b) Anterior ");
+                System.out.println("c) Salir");
+
+                String option = StdIn.readString();
+
+                switch (option) {
+                    case "a" -> index++;
+                    case "b" -> index--;
+                    default -> index = -1;
+                }
+            }
+
+        }
+    }
+
+    private static void navigatePreviousEvolution(List<String> previousEvolution) {
+        if (previousEvolution.size() == 1) {
+            System.out.println("Hay solo una evolución anterior y es ");
+            System.out.println(previousEvolution.get(0));
+        } else {
+
+            int index = 0;
+            while (index != -1) {
+
+                if (index > (previousEvolution.size() - 1)) {
+                    System.out.println("Ya no hay mas que ver");
+                    index = index - 1;
+                    continue;
+                }
+
+                System.out.println("Estas viendo la evolucion: ");
+                System.out.println(previousEvolution.get(index));
+
+                System.out.println("Navegacion: ");
+                System.out.println("a) Siguiente");
+                System.out.println("b) Anterior ");
+                System.out.println("c) Salir");
+
+                String option = StdIn.readString();
+
+                switch (option) {
+                    case "a" -> index--;
+                    case "b" -> index++;
+                    default -> index = -1;
+                }
+            }
+
+        }
     }
 
 }
