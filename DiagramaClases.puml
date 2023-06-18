@@ -1,0 +1,123 @@
+@startuml
+
+left to right direction
+set namespaceSeparator none
+package cl.ucn.disc.pa.kanto {
+
+    package in.reader {
+
+        interface PokemonReader <<interface>> {
+            +read():Pokemon
+            +hasNext(): boolean
+        }
+        class CvsPokemonReader {
+            -hasNext true: boolean
+            -Separator_character = ",": String
+            -empty_string = "": String
+            -in: In
+            -stringPokemonSerializer: PokemonSerializer
+
+            +CvsPokemonReader(fileName String):
+        }
+
+
+        package seralize {
+            class StringPokemonSerializer {
+                -SeparatorCharacter: String
+
+                +StringPokemonSerializer(SeparatorCharacter String):
+            }
+            interface PokemonSerializer <<interface>> {
+                +seralize(T adapter):Pokemon
+            }
+        }
+
+    }
+
+
+
+
+
+    package pokedex {
+        class DefaultPokedex {
+            -file_name = "kanto.txt": String
+            -first_evolution_property = "primera evolucion": String
+            -compoundPokemon: list<Pokemon>
+
+            +DefaultPokedex():
+
+        }
+        class DefaultPokedexLoader {
+            -pokemonReader: PokemonReader
+            -compoundPokemon: List<Pokemon>
+
+            +DefaultPokedexLoader(pokemonReader PokemonReader, compoundPokemon List<Pokemon>):
+
+        }
+        interface Pokedex <<interface>>{
+            +searchByRangeNumber(int firstLimit, int secondLimit): List<Pokemon>
+            +searchAllPokemon(): List<Pokemon>
+            +searchAllPokemonByFirstEvolution(): List<Pokemon>
+            +searchPokemonByType(String type): List<Pokemon>
+            +searchById(int id): Pokemon
+            +earchByName(String id): Pokemon
+
+        }
+        interface PokedexLoader <<interface>> {
+            +load(): void
+        }
+
+        package sort {
+            class PokemonAlphabeticalComparator {
+            }
+            class PokemonAscendingComparator {
+            }
+            class PokemonDescendingComparator {
+            }
+
+        }
+
+    }
+
+
+
+
+    package pokemon {
+        class Pokemon {
+            -id: int
+            -name: String
+            -stage: String
+            -previousEvolution: List<String>
+            -nextEvolution: List<String>
+            -kindOne: String
+            -kindOne: String
+
+            +getId(): int
+            +getStage(): String
+            +getName(): String
+            +getPreviousEvolution(): List<String>
+            +getNextEvolution(): List<String>
+            +getKindOne(): String
+            +getKindTwo(): String
+
+            +newBuilder(): PokemonBuilder
+
+
+        }
+        interface Showable <<interface>> {
+            +show: void
+        }
+    }
+
+}
+
+StringPokemonSerializer -- PokemonSerializer
+CvsPokemonReader ..|> PokemonReader
+
+
+
+DefaultPokedex ..|> Pokedex
+DefaultPokedexLoader ..|> PokedexLoader
+
+Pokemon ..|> Showable
+@enduml
