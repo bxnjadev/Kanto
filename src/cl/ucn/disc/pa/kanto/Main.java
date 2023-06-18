@@ -8,6 +8,11 @@ import ucn.StdIn;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Benjamín Miranda O. 21544970K
+ * Roberto Díaz A. 21288569K
+ */
+
 public class Main {
 
     private static boolean finish = false;
