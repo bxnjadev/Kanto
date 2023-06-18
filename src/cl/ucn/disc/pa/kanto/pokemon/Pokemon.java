@@ -15,9 +15,6 @@ public class Pokemon implements Showable {
     public Pokemon(int id, String name, String stage,
                    List<String> previousEvolution, List<String> nextEvolution,
                    String kindOne, String kindTwo) {
-
-        System.out.println("ID: " + id);
-
         this.id = id;
         this.name = name;
         this.stage = stage;

@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class CvsPokemonReader implements PokemonReader {
 
+    private boolean hasNext = true;
     private static final String SEPARATOR_CHARACTER = ",";
     private static final String EMPTY_STRING = "";
     private final In in;
@@ -26,6 +27,13 @@ public class CvsPokemonReader implements PokemonReader {
 
         String line = in.readLine();
 
+        if (line == null) {
+            hasNext = false;
+            return null;
+        }
+
+        System.out.println(line);
+
         if (line.equals(EMPTY_STRING)) {
             return null;
         }
@@ -35,7 +43,7 @@ public class CvsPokemonReader implements PokemonReader {
 
     @Override
     public boolean hasNext() {
-        return in.hasNextLine();
+        return hasNext;
     }
 
     @Override

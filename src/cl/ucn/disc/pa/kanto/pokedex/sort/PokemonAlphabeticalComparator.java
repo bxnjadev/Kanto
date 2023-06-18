@@ -8,18 +8,7 @@ public class PokemonAlphabeticalComparator implements Comparator<Pokemon> {
 
     @Override
     public int compare(Pokemon pokemonOne, Pokemon pokemonTwo) {
-
-        if (pokemonOne == null || pokemonTwo == null) {
-            return 0;
-        }
-
-        char firstLetterPokemonOne = pokemonOne.getName()
-                .charAt(0);
-
-        char firstLetterPokemonTwo = pokemonTwo.getName()
-                .charAt(0);
-
-        return Character.compare(firstLetterPokemonOne, firstLetterPokemonTwo);
+        return pokemonOne.getName().compareTo(pokemonTwo.getName());
     }
 
 }

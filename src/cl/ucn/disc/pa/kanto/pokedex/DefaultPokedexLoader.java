@@ -20,9 +20,18 @@ public class DefaultPokedexLoader implements PokedexLoader {
     public void load() {
 
         while (pokemonReader.hasNext()) {
+
+            Pokemon pokemon = pokemonReader.read();
+
+            if (pokemon == null) {
+                continue;
+            }
+
+            System.out.println("Agregado pokemon: " + pokemon.getName());
             compoundPokemon.add(
-                    pokemonReader.read()
+                    pokemon
             );
+
         }
 
     }

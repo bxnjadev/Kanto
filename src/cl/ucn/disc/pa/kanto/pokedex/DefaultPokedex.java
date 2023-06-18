@@ -56,11 +56,21 @@ public class DefaultPokedex implements Pokedex {
     @Override
     public List<Pokemon> searchAllPokemon() {
 
+        System.out.println(compoundPokemon.size());
+
         List<Pokemon> pokemonCompoundCopied = new ArrayList<>(compoundPokemon);
+
+        System.out.println(pokemonCompoundCopied.size());
+
+        for (Pokemon pokemon : compoundPokemon) {
+            System.out.println(pokemon.getName());
+        }
 
         pokemonCompoundCopied.sort(
                 new PokemonAlphabeticalComparator()
         );
+
+        pokemonCompoundCopied.sort(new PokemonAlphabeticalComparator());
 
         return pokemonCompoundCopied;
     }
