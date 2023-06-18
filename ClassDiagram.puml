@@ -1,4 +1,6 @@
 @startuml
+!pragma layout smetana
+skin rose
 
 left to right direction
 set namespaceSeparator none
@@ -12,8 +14,8 @@ package cl.ucn.disc.pa.kanto {
         }
         class CvsPokemonReader {
             -hasNext true: boolean
-            -Separator_character = ",": String
-            -empty_string = "": String
+            -SEPARATOR_CHARACTER : String
+            -EMPTY_STRING : String
             -in: In
             -stringPokemonSerializer: PokemonSerializer
 
@@ -22,26 +24,23 @@ package cl.ucn.disc.pa.kanto {
 
 
         package seralize {
-            class StringPokemonSerializer {
+            class StringPokemonSerializer<String> {
                 -SeparatorCharacter: String
 
                 +StringPokemonSerializer(SeparatorCharacter String):
             }
+
             interface PokemonSerializer <<interface>> {
-                +seralize(T adapter):Pokemon
+                + seralize(T adapter):Pokemon
             }
         }
 
     }
 
-
-
-
-
     package pokedex {
         class DefaultPokedex {
-            -file_name = "kanto.txt": String
-            -first_evolution_property = "primera evolucion": String
+            - FILE_NAME : String
+            -FIRST_EVOLUTION_PROPERTY : String
             -compoundPokemon: list<Pokemon>
 
             +DefaultPokedex():
@@ -111,13 +110,19 @@ package cl.ucn.disc.pa.kanto {
 
 }
 
-StringPokemonSerializer -- PokemonSerializer
+StringPokemonSerializer ..|> PokemonSerializer
 CvsPokemonReader ..|> PokemonReader
 
+DefaultPokedex --* PokedexLoader
 
+DefaultPokedex --o PokemonAlphabeticalComparator
+DefaultPokedex --o PokemonAscendingComparator
+DefaultPokedex --o PokemonDescendingComparator
 
 DefaultPokedex ..|> Pokedex
 DefaultPokedexLoader ..|> PokedexLoader
+
+DefaultPokedex --* PokemonReader
 
 Pokemon ..|> Showable
 @enduml
