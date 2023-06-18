@@ -54,7 +54,31 @@ public class Pokemon implements Showable {
 
     @Override
     public void show() {
-        System.out.println("Name: " + name);
+
+        StringBuilder nextEvolutionStringBuilder = new StringBuilder();
+
+        for (String nextEvolutionElement : nextEvolution) {
+            nextEvolutionStringBuilder.append(nextEvolutionElement).append(" ");
+        }
+
+        StringBuilder previousEvolutionStringBuilder = new StringBuilder();
+
+        for (String previousEvolutionElement : previousEvolution) {
+            previousEvolutionStringBuilder.append(previousEvolutionElement).append(" ");
+        }
+
+
+        System.out.println(" ");
+        System.out.println("[----------- Pokemon: " + name + " -----------]");
+        System.out.println("Id: " + id);
+        System.out.println("Etapa: " + stage);
+        System.out.println("Evoluciones anteriores: " + previousEvolutionStringBuilder.toString());
+        System.out.println("Evoluciones siguientes: " + nextEvolutionStringBuilder.toString());
+        System.out.println("Tipo {1}: " + kindOne);
+        System.out.println("Tipo {2}: " + kindTwo);
+        System.out.println("[---------------------------------------------]");
+        System.out.println(" ");
+
     }
 
     public static PokemonBuilder newBuilder() {

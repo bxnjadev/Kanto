@@ -32,8 +32,6 @@ public class CvsPokemonReader implements PokemonReader {
             return null;
         }
 
-        System.out.println(line);
-
         if (line.equals(EMPTY_STRING)) {
             return null;
         }

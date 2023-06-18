@@ -31,7 +31,7 @@ public class StringPokemonSerializer implements PokemonSerializer<String> {
         String stage = fields[2].trim();
 
         switch (stage) {
-            case "Basico" -> nextEvolutions.addAll(Arrays.asList(fields).subList(3, fields.length - 3));
+            case "Basico" -> nextEvolutions.addAll(Arrays.asList(fields).subList(3, fields.length - 2));
             case "Primera Evolución" -> {
 
                 String previousEvolution = fields[3];

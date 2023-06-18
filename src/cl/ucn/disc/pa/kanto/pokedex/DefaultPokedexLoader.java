@@ -27,7 +27,6 @@ public class DefaultPokedexLoader implements PokedexLoader {
                 continue;
             }
 
-            System.out.println("Agregado pokemon: " + pokemon.getName());
             compoundPokemon.add(
                     pokemon
             );
