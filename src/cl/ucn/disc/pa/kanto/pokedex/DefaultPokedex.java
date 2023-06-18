@@ -4,6 +4,7 @@ import cl.ucn.disc.pa.kanto.in.reader.CvsPokemonReader;
 import cl.ucn.disc.pa.kanto.in.reader.PokemonReader;
 import cl.ucn.disc.pa.kanto.pokedex.sort.PokemonAlphabeticalComparator;
 import cl.ucn.disc.pa.kanto.pokedex.sort.PokemonAscendingComparator;
+import cl.ucn.disc.pa.kanto.pokedex.sort.PokemonDescendingComparator;
 import cl.ucn.disc.pa.kanto.pokemon.Pokemon;
 
 import java.io.IOException;
@@ -97,6 +98,8 @@ public class DefaultPokedex implements Pokedex {
                 compound.add(pokemon);
             }
         }
+
+        compound.sort(new PokemonDescendingComparator());
 
         return compound;
     }

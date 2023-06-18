@@ -1,6 +1,7 @@
 package cl.ucn.disc.pa.kanto.in.reader.serialize;
 
 import cl.ucn.disc.pa.kanto.pokemon.Pokemon;
+import cl.ucn.disc.pa.kanto.pokemon.PokemonBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -75,7 +76,7 @@ public class StringPokemonSerializer implements PokemonSerializer<String> {
         String kindOne = fields[fields.length - 2].trim();
 
         //Using builder construct new instance a pokemon
-        return Pokemon.newBuilder()
+        return PokemonBuilder.newBuilder()
                 .id(id)
                 .name(name)
                 .kindOne(kindOne)

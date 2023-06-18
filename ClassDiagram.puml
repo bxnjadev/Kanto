@@ -106,6 +106,28 @@ package cl.ucn.disc.pa.kanto {
         interface Showable <<interface>> {
             +show: void
         }
+
+        class PokemonBuilder {
+            -id: int
+            -name: String
+            -stage: String
+            -previousEvolution: List<String>
+            -nextEvolution: List<String>
+            -kindOne: String
+            -kindOne: String
+
+            + id(id: int): void
+            + name(name : String) : void
+            + stage(stage : String) : void
+            + previousEvolution(previousEvolution : List<String): void
+            + nextEvolution(nextEvolution : List<String) : void
+            + kindOne(kindOne : String) : void
+            + kindTwo(kindTwo : String) : void
+
+            + builder() : Pokemon
+
+        }
+
     }
 
 }
@@ -113,16 +135,18 @@ package cl.ucn.disc.pa.kanto {
 StringPokemonSerializer ..|> PokemonSerializer
 CvsPokemonReader ..|> PokemonReader
 
-DefaultPokedex --* PokedexLoader
+DefaultPokedex "1" --* "1" PokedexLoader : Load
 
-DefaultPokedex --o PokemonAlphabeticalComparator
-DefaultPokedex --o PokemonAscendingComparator
-DefaultPokedex --o PokemonDescendingComparator
+DefaultPokedex "1" --o "1" PokemonAlphabeticalComparator
+DefaultPokedex "1" --o "1" PokemonAscendingComparator
+DefaultPokedex "1" --o "1" PokemonDescendingComparator
 
 DefaultPokedex ..|> Pokedex
 DefaultPokedexLoader ..|> PokedexLoader
 
-DefaultPokedex --* PokemonReader
+DefaultPokedex "1" --* "1" PokemonReader : "Read"
 
 Pokemon ..|> Showable
+
+PokemonBuilder "1" -- "1" Pokemon : Build
 @enduml

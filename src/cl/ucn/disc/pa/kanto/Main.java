@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Main {
 
+    private static boolean finish = false;
+
     public static void main(String[] args) throws IOException {
 
         //Create the pokedex class
@@ -21,6 +23,7 @@ public class Main {
 
     /**
      * This function show the main menu
+     *
      * @param pokedex the system Pokedex
      */
 
@@ -58,16 +61,21 @@ public class Main {
                     break;
                 case "f":
                     searchById(pokedex);
-                default:
+                case "g":
+                    finish = true;
                     break;
             }
 
+            if (finish) {
+                break;
+            }
         }
 
     }
 
     /**
      * Show a collection pokemon in range
+     *
      * @param pokedex the system Pokedex
      */
 
@@ -99,6 +107,7 @@ public class Main {
 
     /**
      * Show the Pokemon in order Alphabetical
+     *
      * @param pokedex the Pokedex system
      */
 
@@ -114,6 +123,7 @@ public class Main {
 
     /**
      * Show the Pokemon by type
+     *
      * @param pokedex the Pokedex system
      */
 
@@ -132,6 +142,7 @@ public class Main {
 
     /**
      * Show the Pokemon by the stage first evolution
+     *
      * @param pokedex the Pokedex system
      */
 
@@ -146,6 +157,7 @@ public class Main {
 
     /**
      * Search and show the Pokemon by name
+     *
      * @param pokedex the Pokedex system
      */
 
@@ -168,7 +180,11 @@ public class Main {
 
         //Show the pokemon
         pokemon.show();
+        showEvolutions(pokemon);
 
+    }
+
+    private static void showEvolutions(Pokemon pokemon) {
         //If the pokemon has next evolution
         if (pokemon.getNextEvolution().isEmpty()) {
             System.out.println("Este pokemon no tiene siguientes evoluciones.");
@@ -188,6 +204,7 @@ public class Main {
 
     /**
      * Search and show a pokemon by id
+     *
      * @param pokedex the Pokedex system
      */
 
@@ -195,9 +212,9 @@ public class Main {
 
         //Read a string by console
         System.out.println("Ingresa la id: ");
-        String id = StdIn.readString();
+        int id = StdIn.readInt();
         Pokemon pokemon =
-                pokedex.searchByName(id);
+                pokedex.searchById(id);
 
         //Check the pokemon is null
         if (pokemon == null) {
@@ -208,11 +225,13 @@ public class Main {
 
         //Show the pokemon
         pokemon.show();
+        showEvolutions(pokemon);
 
     }
 
     /**
      * Navigate between the next evolution of a Pokemon
+     *
      * @param nextEvolution the collection nextEvolution
      */
 
@@ -260,6 +279,7 @@ public class Main {
 
     /**
      * Navigate between the previous evolution of a Pokemon
+     *
      * @param previousEvolution the collection nextEvolution
      */
 
