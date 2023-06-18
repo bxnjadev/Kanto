@@ -25,8 +25,8 @@ public class CvsPokemonReader implements PokemonReader {
     public Pokemon read() {
 
         String line = in.readLine();
+
         if (line.equals(EMPTY_STRING)) {
-            System.out.println("EMPTY STRING");
             return null;
         }
 

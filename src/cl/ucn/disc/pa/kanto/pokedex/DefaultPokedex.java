@@ -16,13 +16,13 @@ public class DefaultPokedex implements Pokedex {
 
     private static final String FILE_NAME = "kanto.txt";
     private static final String FIRST_EVOLUTION_PROPERTY = "Primera Evolución";
-    private final List<Pokemon> comoundPokemon;
+    private final List<Pokemon> compoundPokemon;
 
     public DefaultPokedex() throws IOException {
-        comoundPokemon = new ArrayList<>();
+        compoundPokemon = new ArrayList<>();
 
         PokemonReader pokemonReader = new CvsPokemonReader(FILE_NAME);
-        PokedexLoader pokedexLoader = new DefaultPokedexLoader(pokemonReader, comoundPokemon);
+        PokedexLoader pokedexLoader = new DefaultPokedexLoader(pokemonReader, compoundPokemon);
 
         pokedexLoader.load();
     }
@@ -32,7 +32,7 @@ public class DefaultPokedex implements Pokedex {
 
         List<Pokemon> pokemonInRange = new LinkedList<>();
 
-        for (Pokemon pokemon : comoundPokemon) {
+        for (Pokemon pokemon : compoundPokemon) {
             int idPokemon = pokemon.getId();
 
             if (idPokemon > secondLimit) {
@@ -56,8 +56,7 @@ public class DefaultPokedex implements Pokedex {
     @Override
     public List<Pokemon> searchAllPokemon() {
 
-        List<Pokemon> pokemonCompoundCopied = new ArrayList<>();
-        Collections.copy(pokemonCompoundCopied, comoundPokemon);
+        List<Pokemon> pokemonCompoundCopied = new ArrayList<>(compoundPokemon);
 
         pokemonCompoundCopied.sort(
                 new PokemonAlphabeticalComparator()
@@ -71,7 +70,7 @@ public class DefaultPokedex implements Pokedex {
 
         LinkedList<Pokemon> compound = new LinkedList<>();
 
-        for (Pokemon pokemon : comoundPokemon) {
+        for (Pokemon pokemon : compoundPokemon) {
             if (pokemon.getStage().equals(FIRST_EVOLUTION_PROPERTY)) {
                 compound.add(pokemon);
             }
@@ -85,9 +84,9 @@ public class DefaultPokedex implements Pokedex {
 
         List<Pokemon> pokemons = new ArrayList<>();
 
-        for (Pokemon pokemon : comoundPokemon) {
-            if(pokemon.getKindOne().equals(type) ||
-            pokemon.getKindTwo().equals(type))
+        for (Pokemon pokemon : compoundPokemon) {
+            if (pokemon.getKindOne().equals(type) ||
+                    pokemon.getKindTwo().equals(type))
                 pokemons.add(pokemon);
         }
 
@@ -97,7 +96,7 @@ public class DefaultPokedex implements Pokedex {
     @Override
     public Pokemon searchById(int id) {
 
-        for (Pokemon pokemon : comoundPokemon) {
+        for (Pokemon pokemon : compoundPokemon) {
             if (pokemon.getId() == id) {
                 return pokemon;
             }
@@ -110,7 +109,7 @@ public class DefaultPokedex implements Pokedex {
     @Override
     public Pokemon searchByName(String id) {
 
-        for (Pokemon pokemon : comoundPokemon) {
+        for (Pokemon pokemon : compoundPokemon) {
             if (id.equals(pokemon.getName())) {
                 return pokemon;
             }
