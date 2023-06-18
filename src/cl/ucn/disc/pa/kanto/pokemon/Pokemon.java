@@ -241,6 +241,8 @@ public class Pokemon implements Showable {
          */
 
         public Pokemon build() {
+            //Using builder construct the class
+
             return new Pokemon(id, name, stage, previousEvolution, nextEvolution, kindOne, kindTwo);
         }
 

@@ -27,14 +27,18 @@ public class DefaultPokedexLoader implements PokedexLoader {
     @Override
     public void load() {
 
+        //Using while while pokemon reader has a pokemon for read
         while (pokemonReader.hasNext()) {
 
+            //Serialize the pokemon
             Pokemon pokemon = pokemonReader.read();
 
+            //if the pokemon is null
             if (pokemon == null) {
                 continue;
             }
 
+            //add the pokemon to compound pokemon
             compoundPokemon.add(
                     pokemon
             );

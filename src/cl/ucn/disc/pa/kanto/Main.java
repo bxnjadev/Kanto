@@ -12,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        //Create the pokedex class
         Pokedex pokedex = new DefaultPokedex();
         showMainMenu(pokedex);
 
@@ -25,6 +26,8 @@ public class Main {
 
     public static void showMainMenu(Pokedex pokedex) {
 
+        //This class show the options
+        //Using a switch
 
         while (true) {
             System.out.println("Opciones: ");
@@ -70,20 +73,25 @@ public class Main {
 
     public static void showPokemonInRange(Pokedex pokedex) {
 
+        //For console is read int
         System.out.println("Ingresa el primer limite");
         int firstLimit = StdIn.readInt();
 
+        //For console is read int
         System.out.println("Ingresa el segundo limite");
         int secondLimit = StdIn.readInt();
 
+        //If the limit is negativo thow error
         if (firstLimit <= 0 && secondLimit <= 0) {
             throw new IllegalArgumentException("Los limites deben ser positivos");
         }
 
+        //Check if the first limit is major that the second, in this case throw a error
         if (firstLimit > secondLimit) {
             throw new IllegalArgumentException("El segundo limite tiene que ser mayor que el primero");
         }
 
+        //Search all pokemons in range y using programming functionaliterate about the pokemons
         pokedex.searchByRangeNumber(firstLimit, secondLimit)
                 .forEach(Pokemon::show);
 
@@ -95,6 +103,8 @@ public class Main {
      */
 
     public static void showPokemonAlphabetical(Pokedex pokedex) {
+
+        //Search all pokemons y using programming functional iterate about the pokemons
 
         pokedex.searchAllPokemon().forEach(
                 Pokemon::show
@@ -109,9 +119,11 @@ public class Main {
 
     public static void showPokemonByType(Pokedex pokedex) {
 
+        //Read the type for console
         System.out.println("Ingresa el tipo de pokemon que quieres elegir: ");
         String type = StdIn.readString();
 
+        //Search all pokemons by type y using programming functional for iterate about the pokemons
         pokedex.searchPokemonByType(type).forEach(
                 Pokemon::show
         );
@@ -125,6 +137,7 @@ public class Main {
 
     public static void showPokemonByFirstEvolution(Pokedex pokedex) {
 
+        //Search all pokemons by type y using programming functional for iterate about the pokemons
         pokedex.searchAllPokemonByFirstEvolution().forEach(
                 Pokemon::show
         );
@@ -138,27 +151,36 @@ public class Main {
 
     public static void searchByName(Pokedex pokedex) {
 
+        //Read the name by console
         System.out.println("Ingresa el nombre: ");
         String name = StdIn.readString();
+
+        //Get the pokemon
         Pokemon pokemon =
                 pokedex.searchByName(name);
 
+        //Check the pokemon is null
         if (pokemon == null) {
+            //Show a message if the pokemon is null
             System.out.println("El pokemon no ha sido encontrado");
             return;
         }
 
+        //Show the pokemon
         pokemon.show();
 
+        //If the pokemon has next evolution
         if (pokemon.getNextEvolution().isEmpty()) {
             System.out.println("Este pokemon no tiene siguientes evoluciones.");
         } else {
+            //Open the menu for navigate between evolutions
             navigateNextEvolution(pokemon.getNextEvolution());
         }
 
         if (pokemon.getPreviousEvolution().isEmpty()) {
             System.out.println("Este pokemon no tiene evoluciones anteriores.");
         } else {
+            //Open the menu for navigate between evolutions
             navigatePreviousEvolution(pokemon.getPreviousEvolution());
         }
 
@@ -171,16 +193,20 @@ public class Main {
 
     public static void searchById(Pokedex pokedex) {
 
+        //Read a string by console
         System.out.println("Ingresa la id: ");
         String id = StdIn.readString();
         Pokemon pokemon =
                 pokedex.searchByName(id);
 
+        //Check the pokemon is null
         if (pokemon == null) {
+            //If the pokemon is null warn it
             System.out.println("El pokemon no ha sido encontrado");
             return;
         }
 
+        //Show the pokemon
         pokemon.show();
 
     }
@@ -191,7 +217,9 @@ public class Main {
      */
 
     private static void navigateNextEvolution(List<String> nextEvolution) {
+        //If the pokemon just a next evolution
         if (nextEvolution.size() == 1) {
+            //Show the unique evolution
             System.out.println("Hay solo una evolución siguiente y es: ");
             System.out.println(nextEvolution.get(0));
         } else {
@@ -199,22 +227,27 @@ public class Main {
             int index = 0;
             while (index != -1) {
 
+                //If the index is major the list warn it
                 if (index > (nextEvolution.size() - 1)) {
                     System.out.println("Ya no hay mas que ver");
                     index = index - 1;
                     continue;
                 }
 
+                //Show the evolution
                 System.out.println("Estas viendo la evolucion: ");
                 System.out.println(nextEvolution.get(index));
 
+                //Show all  options
                 System.out.println("Navegacion: ");
                 System.out.println("a) Siguiente");
                 System.out.println("b) Anterior ");
                 System.out.println("c) Salir");
 
+                //Read for console option
                 String option = StdIn.readString();
 
+                //Using swtich for the menu
                 switch (option) {
                     case "a" -> index++;
                     case "b" -> index--;
@@ -231,6 +264,7 @@ public class Main {
      */
 
     private static void navigatePreviousEvolution(List<String> previousEvolution) {
+        //If the previous evolution is unique show it
         if (previousEvolution.size() == 1) {
             System.out.println("Hay solo una evolución anterior y es ");
             System.out.println(previousEvolution.get(0));
@@ -239,21 +273,30 @@ public class Main {
             int index = 0;
             while (index != -1) {
 
+                //if there are no more evolutions warn it
                 if (index > (previousEvolution.size() - 1)) {
                     System.out.println("Ya no hay mas que ver");
                     index = index - 1;
                     continue;
                 }
 
+                //Show evolution actal
+
                 System.out.println("Estas viendo la evolucion: ");
                 System.out.println(previousEvolution.get(index));
+
+                //Show options
 
                 System.out.println("Navegacion: ");
                 System.out.println("a) Siguiente");
                 System.out.println("b) Anterior ");
                 System.out.println("c) Salir");
 
+                //Read the option by console
+
                 String option = StdIn.readString();
+
+                //Using switch change the option
 
                 switch (option) {
                     case "a" -> index--;

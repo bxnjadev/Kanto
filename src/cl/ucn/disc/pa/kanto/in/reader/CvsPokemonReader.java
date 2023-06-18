@@ -20,6 +20,12 @@ public class CvsPokemonReader implements PokemonReader {
 
     private final PokemonSerializer<String> stringPokemonSerializer;
 
+    /**
+     * The main constructor
+     * @param fileName the file name
+     * @throws IOException throw exception if this error with the cvs file
+     */
+
     public CvsPokemonReader(String fileName) throws IOException {
         in = new In(fileName);
 
@@ -29,17 +35,21 @@ public class CvsPokemonReader implements PokemonReader {
     @Override
     public Pokemon read() {
 
+        //Get a new line
         String line = in.readLine();
 
+        //if the line is null no read more
         if (line == null) {
             hasNext = false;
             return null;
         }
 
+        //If the line is empty return a pokemom null
         if (line.equals(EMPTY_STRING)) {
             return null;
         }
 
+        //serialize a pokemon and return it
         return stringPokemonSerializer.serialize(line);
     }
 

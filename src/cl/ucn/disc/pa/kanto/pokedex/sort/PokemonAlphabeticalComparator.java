@@ -15,6 +15,7 @@ public class PokemonAlphabeticalComparator implements Comparator<Pokemon> {
 
     @Override
     public int compare(Pokemon pokemonOne, Pokemon pokemonTwo) {
+        //Using String class compare two pokemons
         return pokemonOne.getName().compareTo(pokemonTwo.getName());
     }
 

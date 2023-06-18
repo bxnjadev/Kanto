@@ -26,20 +26,27 @@ public class StringPokemonSerializer implements PokemonSerializer<String> {
 
     @Override
     public Pokemon serialize(String adapter) {
+        //Creating the list
         List<String> nextEvolutions = new ArrayList<>();
         List<String> previousEvolutions = new ArrayList<>();
 
+        //Separate the line based a character
         String[] fields = adapter.split(separatorCharacter);
+
+        //Get the id
         String idString = fields[0].trim();
 
+        //Convert the id to zero
         int id = Integer.parseInt(idString);
 
+        //Get the name
         String name = fields[1].trim();
 
-        System.out.println(name);
 
+        //Get the stage
         String stage = fields[2].trim();
 
+        //Get the evolutions
         switch (stage) {
             case "Basico" -> nextEvolutions.addAll(Arrays.asList(fields).subList(3, fields.length - 2));
             case "Primera Evolucion" -> {
@@ -67,6 +74,7 @@ public class StringPokemonSerializer implements PokemonSerializer<String> {
         String kindTwo = fields[fields.length - 1].trim();
         String kindOne = fields[fields.length - 2].trim();
 
+        //Using builder construct new instance a pokemon
         return Pokemon.newBuilder()
                 .id(id)
                 .name(name)
