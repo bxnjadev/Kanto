@@ -8,15 +8,23 @@ import cl.ucn.disc.pa.kanto.pokemon.Pokemon;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+/**
+ * This class is the main implementation of Pokedex
+ */
 
 public class DefaultPokedex implements Pokedex {
 
     private static final String FILE_NAME = "kanto.txt";
     private static final String FIRST_EVOLUTION_PROPERTY = "Primera Evolucion";
     private final List<Pokemon> compoundPokemon;
+
+    /**
+     * Create of implementation of PokemonReader
+     * @throws IOException trow exception if error in the read data
+     */
 
     public DefaultPokedex() throws IOException {
         compoundPokemon = new ArrayList<>();
@@ -26,6 +34,13 @@ public class DefaultPokedex implements Pokedex {
 
         pokedexLoader.load();
     }
+
+    /**
+     * Get elements defined in a range number based a property id
+     * @param firstLimit the first limit searched
+     * @param secondLimit the last limit searched
+     * @return a collection with objects Pokemons
+     */
 
     @Override
     public List<Pokemon> searchByRangeNumber(int firstLimit, int secondLimit) {
@@ -49,6 +64,11 @@ public class DefaultPokedex implements Pokedex {
         return pokemonInRange;
     }
 
+    /**
+     * Get all Pokemons ordering alphabetical
+     * @return a collection with objects Pokemons
+     */
+
     @Override
     public List<Pokemon> searchAllPokemon() {
 
@@ -61,6 +81,11 @@ public class DefaultPokedex implements Pokedex {
 
         return pokemonCompoundCopied;
     }
+
+    /**
+     * Get all Pokemons that her stage is first evolution
+     * @return a collection with objects Pokemons
+     */
 
     @Override
     public List<Pokemon> searchAllPokemonByFirstEvolution() {
@@ -76,6 +101,13 @@ public class DefaultPokedex implements Pokedex {
         return compound;
     }
 
+    /**
+     * Search a pokemon by type
+     * @param type the type searched
+     * @return a collection with objects Pokemons
+     */
+
+
     @Override
     public List<Pokemon> searchPokemonByType(String type) {
 
@@ -90,6 +122,12 @@ public class DefaultPokedex implements Pokedex {
         return pokemons;
     }
 
+    /**
+     * Search a pokemon by id, can be null
+     * @param id the id searched
+     * @return the pokemon
+     */
+
     @Override
     public Pokemon searchById(int id) {
 
@@ -102,6 +140,12 @@ public class DefaultPokedex implements Pokedex {
 
         return null;
     }
+
+    /**
+     * Search a pokemon by name, can be null
+     * @param id the name searched
+     * @return the pokemon
+     */
 
     @Override
     public Pokemon searchByName(String id) {

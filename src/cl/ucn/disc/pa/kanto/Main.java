@@ -63,6 +63,11 @@ public class Main {
 
     }
 
+    /**
+     * Show a collection pokemon in range
+     * @param pokedex the system Pokedex
+     */
+
     public static void showPokemonInRange(Pokedex pokedex) {
 
         System.out.println("Ingresa el primer limite");
@@ -84,6 +89,11 @@ public class Main {
 
     }
 
+    /**
+     * Show the Pokemon in order Alphabetical
+     * @param pokedex the Pokedex system
+     */
+
     public static void showPokemonAlphabetical(Pokedex pokedex) {
 
         pokedex.searchAllPokemon().forEach(
@@ -91,6 +101,11 @@ public class Main {
         );
 
     }
+
+    /**
+     * Show the Pokemon by type
+     * @param pokedex the Pokedex system
+     */
 
     public static void showPokemonByType(Pokedex pokedex) {
 
@@ -103,6 +118,11 @@ public class Main {
 
     }
 
+    /**
+     * Show the Pokemon by the stage first evolution
+     * @param pokedex the Pokedex system
+     */
+
     public static void showPokemonByFirstEvolution(Pokedex pokedex) {
 
         pokedex.searchAllPokemonByFirstEvolution().forEach(
@@ -110,6 +130,11 @@ public class Main {
         );
 
     }
+
+    /**
+     * Search and show the Pokemon by name
+     * @param pokedex the Pokedex system
+     */
 
     public static void searchByName(Pokedex pokedex) {
 
@@ -139,6 +164,11 @@ public class Main {
 
     }
 
+    /**
+     * Search and show a pokemon by id
+     * @param pokedex the Pokedex system
+     */
+
     public static void searchById(Pokedex pokedex) {
 
         System.out.println("Ingresa la id: ");
@@ -154,6 +184,11 @@ public class Main {
         pokemon.show();
 
     }
+
+    /**
+     * Navigate between the next evolution of a Pokemon
+     * @param nextEvolution the collection nextEvolution
+     */
 
     private static void navigateNextEvolution(List<String> nextEvolution) {
         if (nextEvolution.size() == 1) {
@@ -189,6 +224,11 @@ public class Main {
 
         }
     }
+
+    /**
+     * Navigate between the previous evolution of a Pokemon
+     * @param previousEvolution the collection nextEvolution
+     */
 
     private static void navigatePreviousEvolution(List<String> previousEvolution) {
         if (previousEvolution.size() == 1) {

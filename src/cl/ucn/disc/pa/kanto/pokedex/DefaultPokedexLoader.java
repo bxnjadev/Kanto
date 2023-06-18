@@ -5,6 +5,10 @@ import cl.ucn.disc.pa.kanto.pokemon.Pokemon;
 
 import java.util.List;
 
+/**
+ * This class is the main implementation of pokedex loader
+ */
+
 public class DefaultPokedexLoader implements PokedexLoader {
 
     private final PokemonReader pokemonReader;
@@ -15,6 +19,10 @@ public class DefaultPokedexLoader implements PokedexLoader {
         this.pokemonReader = pokemonReader;
         this.compoundPokemon = compoundPokemon;
     }
+
+    /**
+     * Load the pokemons
+     */
 
     @Override
     public void load() {

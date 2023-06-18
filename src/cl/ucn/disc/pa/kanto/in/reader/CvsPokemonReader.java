@@ -7,6 +7,10 @@ import ucn.In;
 
 import java.io.IOException;
 
+/**
+ * This class implement a way for read using cvs files
+ */
+
 public class CvsPokemonReader implements PokemonReader {
 
     private boolean hasNext = true;

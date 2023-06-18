@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This class has a way for read pokemons, using a String class
+ */
+
 public class StringPokemonSerializer implements PokemonSerializer<String> {
 
     private final String separatorCharacter;
@@ -13,6 +17,12 @@ public class StringPokemonSerializer implements PokemonSerializer<String> {
     public StringPokemonSerializer(String separatorCharacter) {
         this.separatorCharacter = separatorCharacter;
     }
+
+    /**
+     * Convert a String a Pokemon
+     * @param adapter the adapter string
+     * @return the new Pokemon, be can bull
+     */
 
     @Override
     public Pokemon serialize(String adapter) {
